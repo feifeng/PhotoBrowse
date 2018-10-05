@@ -1,16 +1,13 @@
 package com.sleepwind.activity;
 
-import android.app.Activity;
 import android.app.SharedElementCallback;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.sleepwind.Base.PhotoFragment;
 import com.sleepwind.R;
 import com.sleepwind.adapter.BrowseAdapter;
 
@@ -31,6 +28,7 @@ public class BrowseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_browse);
 
         supportPostponeEnterTransition();
+
         initView();
         initSharedElement();
     }
@@ -41,9 +39,9 @@ public class BrowseActivity extends AppCompatActivity {
 
         browseViewPager = findViewById(R.id.browseViewPager);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        browseAdapter = new BrowseAdapter(this, fragmentManager, photoPathList);
+        browseAdapter = new BrowseAdapter(this, photoPathList);
         browseViewPager.setAdapter(browseAdapter);
+
         browseViewPager.setCurrentItem(index);
     }
 
@@ -53,9 +51,8 @@ public class BrowseActivity extends AppCompatActivity {
                 @Override
                 public void onMapSharedElements(List<String> names, Map<String, View> sharedElements) {
                     String url = photoPathList.get(browseViewPager.getCurrentItem());
-                    PhotoFragment fragment = (PhotoFragment) browseAdapter.instantiateItem(browseViewPager, browseViewPager.getCurrentItem());
                     sharedElements.clear();
-                    sharedElements.put(url, fragment.getSharedElement());
+                    sharedElements.put(url, browseAdapter.getPrimaryItem());
                 }
             });
         }
