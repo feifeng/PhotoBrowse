@@ -28,12 +28,23 @@ PhotoBrowse is an Android photo browser that supports dragging off
 ## Usage
 
 ```java 
-if (Build.VERSION.SDK_INT >= 22) {
-        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imageView, photoPathList.get(position));
-        startActivity(intent, compat.toBundle());
-}else {
-    startActivity(intent);
-}
+
+public void onItemClick(View view) {
+        int position = photoRecyclerView.getChildAdapterPosition(view);
+        Intent intent = new Intent(this, BrowseActivity.class);
+        intent.putStringArrayListExtra("PHOTO_PATH", photoPathList);
+        intent.putExtra("index", position);
+
+        ImageView imageView = view.findViewById(R.id.photoImageView);
+
+        if (Build.VERSION.SDK_INT >= 22) {
+            ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imageView, photoPathList.get(position));
+            startActivity(intent, compat.toBundle());
+        }else {
+            startActivity(intent);
+        }
+    }
+
 ```
 
 ## Author
