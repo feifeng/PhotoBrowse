@@ -16,3 +16,25 @@ PhotoBrowse is an Android photo browser that supports dragging off
 - Basic photo browsing
 - Click to close the photo
 - Drag to close the photo
+
+
+## Installation 
+
+### Requirements 
+
+- Android SDK Version 21 
+- Java Development language
+
+## Usage
+
+## Author
+
+<img src="./Images/avatar.jpeg" style="" width="200px">
+
+Does your organization or project use PhotoBrowse? Please let me know by email.
+
+wade.hawk, duanhaisi@gmail.com
+
+## License 
+
+PhotoBrowse is available under the MIT license. See the LICENSE file for more info.
