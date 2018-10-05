@@ -52,7 +52,7 @@ public class BrowseAdapter extends PagerAdapter {
             }
         });
 
-        String photoURL = String.format(URLS.PHOTO, photoPathList.get(position));
+        String photoURL = String.format(URLS.PHOTO_BIG, photoPathList.get(position));
          Glide.with(context).load(photoURL).asBitmap().dontAnimate().into(imageView);
 
         container.addView(imageView);
