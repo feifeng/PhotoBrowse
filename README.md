@@ -27,6 +27,15 @@ PhotoBrowse is an Android photo browser that supports dragging off
 
 ## Usage
 
+```java 
+if (Build.VERSION.SDK_INT >= 22) {
+        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imageView, photoPathList.get(position));
+        startActivity(intent, compat.toBundle());
+}else {
+    startActivity(intent);
+}
+```
+
 ## Author
 <a src="https://github.com/weifans">
     <img src="./Images/avatar.png" style="" width="100px">
@@ -35,8 +44,8 @@ PhotoBrowse is an Android photo browser that supports dragging off
 
 Does your organization or project use PhotoBrowse? Please let me know by email.
 
-weifans, duanhaisi@gmail.com
-SLEEP WIND https://sleepwind.com
+- weifans, duanhaisi@gmail.com
+- SLEEP WIND https://sleepwind.com
 
 ## License 
 
