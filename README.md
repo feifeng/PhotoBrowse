@@ -35,7 +35,8 @@ PhotoBrowse is an Android photo browser that supports dragging off
 
 Does your organization or project use PhotoBrowse? Please let me know by email.
 
-wade.hawk, duanhaisi@gmail.com
+weifans, duanhaisi@gmail.com
+SLEEP WIND https://sleepwind.com
 
 ## License 
 
