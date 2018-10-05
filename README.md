@@ -28,8 +28,10 @@ PhotoBrowse is an Android photo browser that supports dragging off
 ## Usage
 
 ## Author
+<a src="https://github.com/weifans">
+    <img src="./Images/avatar.png" style="" width="100px">
+</a>
 
-<img src="./Images/avatar.png" style="" width="100px">
 
 Does your organization or project use PhotoBrowse? Please let me know by email.
 
