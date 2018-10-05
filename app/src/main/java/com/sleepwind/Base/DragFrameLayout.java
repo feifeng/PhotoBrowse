@@ -11,108 +11,22 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
-/**
- * DragBack
- * Created by Porster on 17/6/9.
- */
-
 public class DragFrameLayout extends FrameLayout {
-    
+
     public static final String TAG = "DragFramlayout";
     private ViewDragHelper viewDragHelper;
-    public int DEF_BG_COLOR = 0xff000000;               //#00000000
     private boolean mDragScale = true;                  // 拖动是否进行缩放变化
+    private float sensitivity = 1.0f;
 
-    /**
-     * 拖拽时是否进行缩放操作，默认TRUE
-     * @param dragScale
-     */
-    public void setDragScale(boolean dragScale) {
-        mDragScale = dragScale;
-    }
 
     public DragFrameLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        initDrag();
     }
 
-    private void init() {
+    private void initDrag() {
 
-        viewDragHelper = ViewDragHelper.create(this,1.0f, new ViewDragHelper.Callback(){
-
-            @Override
-            public boolean tryCaptureView(View child, int pointerId) {
-                // 允许子视图进行拖拽, 这里默认都允许
-                return true;
-            }
-
-            boolean needDrag;       // 是否允许所有方向拖拽
-
-            @Override
-            public int clampViewPositionVertical(View child, int top, int dy) {
-                if (needDrag) {
-                    return top;
-                }
-                if (top < 0) {  // 只允许向下拖拽
-                    top = 0;
-                } else if (top > 100) { // 向下拖拽超过100px后，释放允许任何方向拖拽
-                    needDrag = true;
-                }
-                return top;
-            }
-
-            @Override
-            public int clampViewPositionHorizontal(View child, int left, int dx) {
-                return needDrag ? left : 0;
-            }
-
-            /**
-             *
-             * @param changedView   被拖动的View
-             * @param left          水平拖动距离
-             * @param top           垂直拖动距离
-             * @param dx            每次拖拽产生的水平距离x2-x1
-             * @param dy            每次拖拽产生的垂直距离y2-y1
-             */
-            @Override
-            public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
-                super.onViewPositionChanged(changedView, left, top, dx, dy);
-                float present = 1 - (top * 1.0f) / (getHeight());
-
-                if (getContext() instanceof Activity) {
-                    int alpah = Math.min((int) (255 * present), 255);
-                    ((Activity) getContext()).getWindow().getDecorView().setBackgroundColor(Color.argb(alpah, 255, 255, 255));
-                }
-
-                float maxScale = Math.min(present, 1.0f);//Max,1.0f
-                float minScale = Math.max(0.5f, maxScale);//Min,5.0f;
-
-                changedView.setScaleX(minScale);
-                changedView.setScaleY(minScale);
-            }
-
-            boolean mNeedRelease;
-
-            @Override
-            public void onViewReleased(View releasedChild, float xvel, float yvel) {
-                super.onViewReleased(releasedChild, xvel, yvel);
-
-                if (mNeedRelease) {
-                    if (getContext() instanceof Activity) {
-                        ((Activity) getContext()).onBackPressed();
-                    }
-                } else {
-                    needDrag = false;
-                    //让视图归位
-                    viewDragHelper.settleCapturedViewAt(finalLeft, finalTop);
-                    releasedChild.setScaleX(1.0f);
-                    releasedChild.setScaleY(1.0f);
-                    invalidate();
-                }
-            }
-        });
-
-        viewDragHelper = ViewDragHelper.create(this, 1.0f, new ViewDragHelper.Callback() {
+        viewDragHelper = ViewDragHelper.create(this, sensitivity, new ViewDragHelper.Callback() {
             @Override
             public boolean tryCaptureView(View child, int pointerId) {
                 return true;
@@ -160,8 +74,6 @@ public class DragFrameLayout extends FrameLayout {
                     changedView.setScaleX(minScale);
                     changedView.setScaleY(minScale);
                 }
-
-                Log.i(TAG, "Top=" + top + "Release=" + getHeight() * 0.25 + "Present=" + present);
             }
 
             boolean needDrag;

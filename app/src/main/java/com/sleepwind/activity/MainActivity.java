@@ -1,5 +1,6 @@
 package com.sleepwind.activity;
 
+import android.annotation.TargetApi;
 import android.app.SharedElementCallback;
 import android.content.Intent;
 import android.os.Build;
@@ -73,25 +74,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @TargetApi(21)
     private void initSharedElement() {
-        if (Build.VERSION.SDK_INT >= 22) {
-            setExitSharedElementCallback(new SharedElementCallback() {
-                @Override
-                public void onMapSharedElements(List<String> names, Map<String, View> sharedElements) {
-                    if (bundle != null) {
-                        int i = bundle.getInt("index", 0);
-                        sharedElements.clear();
-                        names.clear();
+        setExitSharedElementCallback(new SharedElementCallback() {
+            @Override
+            public void onMapSharedElements(List<String> names, Map<String, View> sharedElements) {
+                if (bundle != null) {
+                    int i = bundle.getInt("index", 0);
+                    sharedElements.clear();
+                    names.clear();
 
-                        View view = photoRecyclerView.getChildAt(i);
-                        ImageView imageView = view.findViewById(R.id.photoImageView);
+                    View view = photoRecyclerView.getChildAt(i);
+                    ImageView imageView = view.findViewById(R.id.photoImageView);
 
-                        sharedElements.put(photoPathList.get(i), imageView);
-                        bundle = null;
-                    }
+                    sharedElements.put(photoPathList.get(i), imageView);
+                    bundle = null;
                 }
-            });
-        }
+            }
+        });
     }
 
     @Override
