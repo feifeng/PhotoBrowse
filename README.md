@@ -11,6 +11,10 @@ PhotoBrowse is an Android photo browser that supports dragging off
 | ![Photo Click](./Images/photo-click.gif)  | ![Photo Drag](./Images/photo-drag.gif)  | ![Known issue](./Images/known-issue.gif)  |
 
 
+| Photo Spacing |
+| ------------- |
+| ![Photo Click](./Images/spacing.gif)  |
+
 
 ## Features
 

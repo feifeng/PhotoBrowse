@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.sleepwind.Base.DragFrameLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.BrowseActivity">
+    tools:context=".activity.BrowseActivity" >
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/browseViewPager"
+    <com.sleepwind.Base.DragFrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".activity.BrowseActivity">
 
-    </android.support.v4.view.ViewPager>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/browseViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
-</com.sleepwind.Base.DragFrameLayout>
+        </android.support.v4.view.ViewPager>
+
+    </com.sleepwind.Base.DragFrameLayout>
+
+    <View
+        android:id="@+id/spaceView"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorSpaceView"
+        android:layout_marginLeft="-30dp">
+    </View>
+
+</android.support.design.widget.CoordinatorLayout>

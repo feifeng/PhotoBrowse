@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#b6b8c3</color>
     <color name="colorAccent">#000000</color>
     <color name="primary_text_default_material_dark">#000000</color>
+    <color name="colorSpaceView">#fafafa</color>
 </resources>
